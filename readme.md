@@ -8,7 +8,7 @@ In OpenRocket, export Time, Altitude(=z), North(=x), East(=y), Zenith(=theta), a
 ![](xyz.png)
 ![](psi_theta.png)
 
-Format the CSV to the following columns. Note that Psi and Theta is Radians. The export from OpenRocket is Degrees. You need to convert it manually.
+Format the CSV to the following columns. Note that Psi and Theta is Radians. The export from OpenRocket is Degrees. You need to convert it manually. Also, the header must be coordinated, since it's used in the script (e.g., "time" must not be "Time").
 ```
 time,z,y,x,psi,theta
 0,0,0,0,0,1.466076572
