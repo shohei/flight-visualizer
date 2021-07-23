@@ -1,25 +1,10 @@
-clear;close all; clc;
+clear; close all; clc;
+rocket_figure(0,0,0,0,0,0,1);
 
-data = readtable('xyz_psi_theta.csv');
-% data = readtable('launch_apr21_2021.csv');
-
-t = data.time;
-
-%描画
-figure(); hold on; box('off')
 axis equal;
 xlabel('x');ylabel('y');zlabel('z');
+set(gca,'ZDir','rev');
 grid on;view (3)
-
-interval = 4; %飛行機の表示間隔 
-scale = 1; %飛行機のサイズ
-
-for i=1:interval:length(t)
- 	aircraft_figure(data.x(i),data.y(i),data.z(i),data.psi(i),data.theta(i)+pi,0,scale);
-%      stem3(data.x(1:interval:i),data.y(1:interval:i),data.z(1:interval:i),'MarkerSize',1);
-  	plot3(data.x(1:interval:i),data.y(1:interval:i),data.z(1:interval:i));
-    refresh;
-end
 
 %x軸回転
 function R_x = Rotation_X(Psi)
@@ -42,7 +27,7 @@ function R_z = Rotation_Z(Phi)
                0, -sin(Phi), cos(Phi) ];
 end
 
-function [] = aircraft_figure(x,y,z,Psi,Theta,Phi,scale)
+function [] = rocket_figure(x,y,z,Psi,Theta,Phi,scale)
 	%飛行機の3Dグラフィックを描画する関数
 	%引数は重心座標，ロールピッチヨー角，飛行機のサイズ
 	%ポリゴンの頂点を定義して，lineオブジェクトで繋ぐ
